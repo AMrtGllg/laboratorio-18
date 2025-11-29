@@ -1,6 +1,6 @@
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
-//ej3
+/* //ej3
 function cargarUsuarioPromesas() {
   console.log("Iniciando fetch con promesas...");
 
@@ -142,3 +142,62 @@ btnCargarUsuarioAsync.addEventListener("click", async function () {
         console.error("Error al cargar usuario:", error.message);
     }
 });
+*/
+
+
+//ej10
+const regexPasswordFuerte = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+
+function probarPassword(pw) {
+  const esValida = regexPasswordFuerte.test(pw);
+  console.log("ej10 password", pw, "válida?:", esValida);
+}
+
+probarPassword("Abc12345");
+probarPassword("abc12345");
+probarPassword("ABC12345");
+probarPassword("Abcdefgh");
+
+//ej11
+const regexUrlSegura = /https:\/\/[^\s]+/g;
+
+const textoUrls = "Visita https://es.wikipedia.org/wiki/Wikipedia:Portada o https://www.youtube.com/ y también http://inseguro.org/ruta";
+const urlsEncontradas = textoUrls.match(regexUrlSegura) || [];
+
+console.log("ej11 texto:", textoUrls);
+console.log("ej11 URLs seguras encontradas:", urlsEncontradas);
+
+//ej12
+const regexQuitarTags = /<[^>]*>/g;
+
+function quitarEtiquetas(html) {
+  return html.replace(regexQuitarTags, "");
+}
+const htmlEjemplo = "<h1>Hola</h1><p>Esto es <strong>texto</strong></p>";
+const sinTags = quitarEtiquetas(htmlEjemplo);
+
+console.log("ej12 original:", htmlEjemplo);
+console.log("ej12 sin etiquetas:", sinTags);
+
+//ej13
+const regexSepararOraciones = /[^.!?]+[.!?]?/g;
+
+const textoOraciones = "Hola. Cómo estás? Bien!";
+const partes = textoOraciones.match(regexSepararOraciones) || [];
+
+console.log("ej13 texto original:", textoOraciones);
+console.log("ej13 fragmentos:", partes);
+
+//ej14
+const regexFecha = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+function probarFecha(fecha) {
+  const esValida = regexFecha.test(fecha);
+  console.log("ej14 fecha", fecha, "válida?:", esValida);
+}
+
+probarFecha("01/01/2024");
+probarFecha("31/12/1999");
+probarFecha("32/01/2024");
+probarFecha("10/13/2024");
+probarFecha("1/01/2024");
